@@ -13,11 +13,13 @@ import { Footer } from "@/components/complex/footer"
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/base/avatar"
 
+import { Magnetic } from "@/components/motion-primitives/magnetic"
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group"
 
 import {
     getProfileData,
     getProjectsData,
+    getSocialLinkData,
     getCertificationsData,
 } from "@/data/data"
 
@@ -194,6 +196,37 @@ const CertificationsSection = () => {
     )
 }
 
+const SocialLinksSection = () => {
+    const data = getSocialLinkData()
+
+    return (
+        <div className="flex flex-col items-start gap-2">
+            <h3 className="font-semibold text-lg">Contact me below</h3>
+            <h4 className="leading-none text-muted-foreground">
+                Feel free to contact me at <b>{getProfileData().email}</b>
+            </h4>
+            <div className="flex flex-row gap-2 items-center py-2">
+                {data.map((social, index) => (
+                    <Magnetic
+                        key={index}
+                        intensity={0.2}
+                        springOptions={{ bounce: 0.1 }}
+                        actionArea="global"
+                        range={100}
+                    >
+                        <Link
+                            className="rounded-lg bg-primary-foreground py-2 px-2 hover:underline"
+                            href={social.url}
+                        >
+                            {social.label}
+                        </Link>
+                    </Magnetic>
+                ))}
+            </div>
+        </div>
+    )
+}
+
 // This exports the page.
 export default function Page() {
     return (
@@ -218,6 +251,9 @@ export default function Page() {
 
                         {/* App section: projects */}
                         <ProjectsSection />
+
+                        {/* App section: social links */}
+                        <SocialLinksSection />
                     </motion.section>
                 </motion.main>
                 <Footer />
