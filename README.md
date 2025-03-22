@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## About this project
 
-## Getting Started
+This website is a website written in React with NextJS, it was created with the purpose of being simple and straightforward and its design is based on another project that can be found [here](https://github.com/ibelick/nim) so, thank you [Julien Thibeaut](https://github.com/ibelick) for the project.
 
-First, run the development server:
+Although its design is based on the project, it was created in a different way and with another idea in mind.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project structure
+
+The structure of this project follows the standard of projects made with NextJs.
+
+```sh
+.
+├── ./public
+├── ./src
+│   ├── ./src/app
+│   │   ├── ./src/app/favicon.ico                   # Project Icon
+│   │   ├── ./src/app/globals.css                   # Project style
+│   │   ├── ./src/app/layout.tsx                    # Home layout
+│   │   ├...
+│   │   ├── ./src/app/page.client.tsx               # Home client page
+│   │   └── ./src/app/page.tsx                      # Home server page
+│   ├── ./src/components
+│   │   ├── ./src/components/base                   # Shadcn components
+│   │   ├── ./src/components/complex                # Built-in components
+│   │   ├── ./src/components/motion-primitives      # Motion-primitives components
+│   │   └── ./src/components/theme                  # theming
+│   ├── ./src/constants
+│   │   └── ./src/constants/motion.ts               # Motion component constants
+│   ├── ./src/data
+│   │   ├── ./src/data/data.ts                      # Static data
+│   │   └── ./src/data/types.ts                     # Types for static data
+│   ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> If you are interested in using this project with your own data then it is important to understand the structure well!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build and start
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+As previously mentioned, this project is built on the Next framework, so the build and start commands are standard.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+$ npm run dev   # Starts in developer mode
+$ npm run lint  # Start lint check
+$ npm run build # Builds the project
+$ npm run start # Starts the project
+```
