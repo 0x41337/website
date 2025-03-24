@@ -38,6 +38,10 @@ export function getSocialLinkData(): SocialLinkType[] {
             url: "https://github.com/0x41337",
             label: "GitHub",
         },
+        {
+            url: "https://t.me/x41337",
+            label: "Telegram",
+        },
     ]
 }
 
