@@ -48,11 +48,11 @@ export function getSocialLinkData(): SocialLinkType[] {
 export function getProjectsData(): ProjectDataType[] {
     return [
         {
-            url: "https://github.com/0x41337/abyss",
-            title: "Abyss",
-            keywords: ["xgboost", "bitcoin", "analysis"],
+            url: "https://github.com/0x41337/website",
+            title: "This website",
+            keywords: ["nextjs", "react", "typescript", "tailwind-css"],
             description:
-                "Cryptocurrency Price Forecasting Using XGBoost Regressor and Technical Indicators.",
+                "Curious about how this site was made? You can check out the entire source code here, it's free.",
         },
     ]
 }
@@ -63,22 +63,7 @@ export function getCertificationsData(): CertificationDataType[] {
             url: "https://www.coursera.org/learn/stanford-statistics",
             title: "Introduction to statistics",
             startedAt: new Date("2021-01-01"),
-            finishedAt: new Date("2021-06-30"),
             institution: "Stanford University",
-        },
-        {
-            url: "https://www.coursera.org/learn/statistical-inference-for-estimation-in-data-science",
-            title: "Statistical inference for estimation in data science",
-            startedAt: new Date("2021-01-01"),
-            finishedAt: new Date("2021-06-30"),
-            institution: "University of Colorado",
-        },
-        {
-            url: "https://www.coursera.org/specializations/statistical-learning-for-data-science",
-            title: "Integrated Course Program Statistical Learning for Data Science",
-            startedAt: new Date("2021-01-01"),
-            finishedAt: new Date("2021-06-30"),
-            institution: "University of Colorado",
         },
     ]
 }
