@@ -238,8 +238,8 @@ export const TagsInput = React.forwardRef<HTMLDivElement, TagsInputProps>(
                         break
 
                     case "Enter":
+                        e.preventDefault()
                         if (inputValue.trim() !== "") {
-                            e.preventDefault()
                             onValueChangeHandler(inputValue)
                             setInputValue("")
                         }
@@ -276,6 +276,7 @@ export const TagsInput = React.forwardRef<HTMLDivElement, TagsInputProps>(
                     {...props}
                     ref={ref}
                     dir={dir}
+                    tabIndex={-1}
                     className={cn(
                         "flex items-center flex-wrap gap-1 w-full",
                         {
@@ -317,7 +318,7 @@ export const TagsInput = React.forwardRef<HTMLDivElement, TagsInputProps>(
                     ))}
                     <Input
                         id={id}
-                        tabIndex={0}
+                        tabIndex={-1}
                         aria-label="input tag"
                         disabled={disableInput}
                         onKeyDown={handleKeyDown}
