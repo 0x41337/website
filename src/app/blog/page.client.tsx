@@ -225,9 +225,9 @@ const ListBlogPostsComponent = ({ posts }: ListBlogPostsComponentProps) => {
                     })}
                 </div>
             ) : (
-                <div className="flex flex-col">
-                    <p className="text-center text-lg">No posts found.</p>
-                </div>
+                <p className="leading-none text-muted-foreground">
+                    No posts found.
+                </p>
             )}
         </div>
     )
