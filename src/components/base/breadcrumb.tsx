@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import * as React from "react"
 
 import { Slot } from "@radix-ui/react-slot"
@@ -34,17 +36,20 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
 
 function BreadcrumbLink({
     asChild,
+    href,
     className,
     ...props
 }: React.ComponentProps<"a"> & {
     asChild?: boolean
+    href?: string
 }) {
-    const Comp = asChild ? Slot : "a"
+    const Comp = asChild ? Slot : href ? Link : "a"
 
     return (
         <Comp
             data-slot="breadcrumb-link"
             className={cn("hover:text-foreground transition-colors", className)}
+            href={href!}
             {...props}
         />
     )
