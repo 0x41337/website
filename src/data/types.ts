@@ -28,7 +28,7 @@ export type CertificationDataType = {
     url: string
     title: string
     startedAt: Date
-    finishedAt: Date
+    finishedAt?: Date
     institution: string
 }
 

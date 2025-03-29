@@ -182,7 +182,9 @@ const CertificationsSection = () => {
                                     </h3>
                                     <h3>-</h3>
                                     <h3>
-                                        {certification.finishedAt.toLocaleDateString()}
+                                        {certification.finishedAt
+                                            ? certification.finishedAt.toLocaleDateString()
+                                            : "Not finished yet"}
                                     </h3>
                                 </div>
                             </div>
