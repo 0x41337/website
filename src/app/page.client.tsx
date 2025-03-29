@@ -278,11 +278,9 @@ const ListBlogPostsComponent = ({ posts }: ListBlogPostsComponentProps) => {
                     </Link>
                 </AnimatedGroup>
             ) : (
-                <div className="flex flex-col">
-                    <p className="text-center text-lg">
-                        I don't have any post yet.
-                    </p>
-                </div>
+                <p className="leading-none text-muted-foreground">
+                    I don't have any post yet.
+                </p>
             )}
         </div>
     )
