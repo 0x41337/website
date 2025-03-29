@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { motion } from "motion/react"
 
+import { Post } from "@/lib/blog"
+
 import {
     VARIANTS_SECTION,
     VARIANTS_CONTAINER,
@@ -196,6 +198,7 @@ const CertificationsSection = () => {
     )
 }
 
+// Responsible for displaying social links.
 const SocialLinksSection = () => {
     const data = getSocialLinkData()
 
@@ -227,8 +230,68 @@ const SocialLinksSection = () => {
     )
 }
 
+// Responsible for displaying the three most recent posts.
+type ListBlogPostsComponentProps = {
+    posts: Post[]
+}
+
+const ListBlogPostsComponent = ({ posts }: ListBlogPostsComponentProps) => {
+    return (
+        <div className="flex flex-col gap-2 items-start w-full">
+            <h3 className="text-xl font-semibold">Latest blog posts</h3>
+            {posts.length > 0 ? (
+                <AnimatedGroup
+                    preset="zoom"
+                    className="flex flex-col gap-3 w-full"
+                >
+                    {posts.slice(0, 3).map((post, index) => {
+                        return (
+                            <Link
+                                key={index}
+                                href={post.url}
+                                className="w-full"
+                            >
+                                <div className="w-full flex flex-col gap-2 items-start p-3 border rounded-lg hover:bg-accent hover:opacity-90 transition">
+                                    <div className="flex flex-col gap-1">
+                                        <h3 className="font-semibold text-lg">
+                                            {post.title}
+                                        </h3>
+                                        <h4 className="leading-none max-w-sm">
+                                            {post.description}
+                                        </h4>
+                                    </div>
+                                    <div className="text-sm flex leading-none text-muted-foreground">
+                                        {post.keywords.map((keyword, index) =>
+                                            index + 1 < post.keywords.length
+                                                ? keyword + ", "
+                                                : keyword
+                                        )}
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                    })}
+                    <Link href="/blog" className="underline">
+                        View all posts
+                    </Link>
+                </AnimatedGroup>
+            ) : (
+                <div className="flex flex-col">
+                    <p className="text-center text-lg">
+                        I don't have any post yet.
+                    </p>
+                </div>
+            )}
+        </div>
+    )
+}
+
 // This exports the page.
-export default function Page() {
+type PageProps = {
+    posts: Post[]
+}
+
+export default function Page({ posts }: PageProps) {
     return (
         <div className="min-h-screen w-full flex flex-col font-[family-name:var(--font-inter-tight)]">
             <div className="mx-auto w-full max-w-screen-sm relative flex-1 px-4 py-20 ">
@@ -251,6 +314,9 @@ export default function Page() {
 
                         {/* App section: projects */}
                         <ProjectsSection />
+
+                        {/* App section: blog posts */}
+                        <ListBlogPostsComponent posts={posts} />
 
                         {/* App section: social links */}
                         <SocialLinksSection />

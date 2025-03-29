@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { NuqsAdapter } from "nuqs/adapters/next/app"
+
 import "./globals.css"
 
 import { ThemeProvider } from "@/components/theme/theme-provider"
@@ -23,7 +25,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
+                    <NuqsAdapter>{children}</NuqsAdapter>
                 </ThemeProvider>
             </body>
         </html>

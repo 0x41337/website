@@ -11,6 +11,7 @@ The structure of this project follows the standard of projects made with NextJs.
 ```sh
 .
 ├── ./public
+├── ./blog                                          # Blog posts in MDX
 ├── ./src
 │   ├── ./src/app
 │   │   ├── ./src/app/favicon.ico                   # Project Icon
@@ -23,7 +24,7 @@ The structure of this project follows the standard of projects made with NextJs.
 │   │   ├── ./src/components/base                   # Shadcn components
 │   │   ├── ./src/components/complex                # Built-in components
 │   │   ├── ./src/components/motion-primitives      # Motion-primitives components
-│   │   └── ./src/components/theme                  # theming
+│   │   └── ./src/components/theme                  # Theming
 │   ├── ./src/constants
 │   │   └── ./src/constants/motion.ts               # Motion component constants
 │   ├── ./src/data
