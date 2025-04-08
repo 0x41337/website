@@ -1,0 +1,110 @@
+export const metadata = {
+    title: "Avoid Data Leakage: The Common Mistake of Normalizing Data Before Splitting",
+    keywords: [
+        "data-leakage",
+        "data-preparation",
+        "data-transformation",
+        "avoiding-overfitting",
+        "beginner-data-science",
+        "training-vs-validation",
+        "normalization-before-split",
+    ],
+    description: "Learn why normalizing or transforming data before splitting can compromise your machine learning models — with a practical example and intuitive explanation."
+}
+
+
+# Avoid Data Leakage: The Common Mistake of Normalizing Data Before Splitting
+![](https://unsplash.com/photos/Ype9sdOPdYc/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzQ0MTMwMzExfA&force=true&w=1920)
+> Image by Hunter Harritt from unsplash
+
+One of the first steps when working with machine learning is preparing the data. Normalization, standardization, or other transformations are essential for the good performance of the models.
+
+However, there is a subtle — and very common — trap that can ruin your results: applying transformations to the data before splitting it between training and validation/testing.
+
+In this post, I will explain what data leakage is in this context, and why this error compromises the validity of your models. All with a simple and direct example. 😉
+
+
+## The problem: Transforming data before splitting
+Let's assume you have a dataset like this:
+
+```math
+\mathbb{D} = \{10, 12, 14, 16, 18\},
+```
+
+If you want to normalize by subtracting the mean, you could calculate:
+
+```math
+\mu = \frac{ \sum^{ |\mathbb{D}| }_{i=1}\mathbb{D}_{i} }{ |\mathbb{D}| } = \frac{10+12+14+16+18}{5} = 14,
+```
+
+And then normalize:
+
+```math
+\mathbb{D}^{\mathbb{N}} = [x - \mu \ | \ x \in \mathbb{D}] = \{-4, -2, 0, 2, 4\},
+```
+
+Then we split the data:
+
+```math
+\mathbb{D}^{\mathbb{N}}_{training},\ \mathbb{D}^{\mathbb{N}}_{test} = \mathbb{S}(\mathbb{D}^{\mathbb{N}}) = \{-4, -2, 0\}, \{2, 4\}.
+```
+
+## So where is the problem?
+The problem here is that the transformations on the data happen by calculating an average of the entire
+data set so when the data is split this transformation contains information from the test set introducing
+future bias into the training data.
+
+```r
+# Pipeline
+1. Data
+2. Transformation
+3. Data-t
+4. Split(Data-t)
+5. [training-t, test-t]
+6. Model(training-t, test-t)
+```
+
+In this pipeline we can see that the transformation is calculated with all the data, that is, it has
+information from the test data, biasing the model with future information.
+
+## So how do you solve this problem?
+In simple terms, just transform/calculate the features after splitting the data so you ensure that the
+data has not been leaked introducing future bias into the model:
+
+1. Assuming a set as:
+```math
+\mathbb{D} = \{10, 12, 14, 16, 18\},
+```
+
+2. Splitting the data from the dataset:
+```math
+\mathbb{D}_{training},\ \mathbb{D}_{test} = \mathbb{S}(\mathbb{D}) = \{10, 12, 14\}, \{16, 18\},
+```
+
+3. Then transforming the training data:
+```math
+\mathbb{D}^{\mathbb{N}}_{training} = [x - \mu \ | \ x \in \mathbb{D}] = \{-4, -2, 0\}.
+```
+
+Now the mean is calculated with a part of all the data which is the training part, so the model will
+not have information from the test part, avoiding the problem of information leakage due to
+transformations or feature calculation.
+
+```r
+# Pipeline
+1. Data
+2. Split(Data)
+3. [training, test]
+4. Transformation
+5. [training-t, test]
+6. Model(training-t, test)
+```
+
+## Conclusion
+Avoiding data leaks is essential to ensuring that your model is being tested in a fair and realistic way. Data transformations should be done after splitting — always!
+Remember: if the model “knows” things that should only be discovered later, it's not learning — it's cheating. 😉
+
+## References
+- [Scaling Data: Before or After Train-Test Split?](https://medium.com/@megha.natarajan/scaling-data-before-or-after-train-test-split-35e9a9a7453f)
+- [Data normalization before or after train-test split?](https://datascience.stackexchange.com/questions/54908/data-normalization-before-or-after-train-test-split)
+- [Normalize data before or after split of training and testing data?](https://medium.com/@spinjosovsky/normalize-data-before-or-after-split-of-training-and-testing-data-7b8005f81e26)
