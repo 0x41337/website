@@ -83,12 +83,12 @@ data has not been leaked introducing future bias into the model:
 
 3. Calculating the mean for transformation:
 ```math
-\bar{x} = \frac{10+12+14}{5} = 7.2,
+\bar{x} = \frac{10+12+14}{3} = 12,
 ```
 
 3. Then transforming the training data:
 ```math
-\mathbb{D}^{\mathbb{N}}_{training} = [x - \bar{x} \ | \ x \in \mathbb{D}_{training}] = \{2.8, 4.8, 6.8\}.
+\mathbb{D}^{\mathbb{N}}_{training} = [x - \bar{x} \ | \ x \in \mathbb{D}_{training}] = \{-2, 0, 2\}.
 ```
 
 Now the mean is calculated with a part of all the data which is the training part, so the model will
